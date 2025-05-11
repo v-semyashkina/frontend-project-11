@@ -12,10 +12,10 @@ const initialState = {
 }
 
 const schema = object().shape({
-  newUrl: string('Ссылка должна быть валидным URL')
-    .required('Ссылка должна быть валидным URL')
-    .url('Ссылка должна быть валидным URL')
-    .test('not-in-urls', 'RSS уже существует', function (value) {
+  newUrl: string('UrlInvalid')
+    .required('UrlInvalid')
+    .url('UrlInvalid')
+    .test('not-in-urls', 'RssExists', function (value) {
       const { urls } = this.parent
       return !urls.includes(value)
     }),
