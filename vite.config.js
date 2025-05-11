@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'path'
 
 export default {
   root: path.resolve(__dirname, ''),
@@ -11,4 +11,4 @@ export default {
     port: 8080,
     hot: true,
   },
-};
+}

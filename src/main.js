@@ -1,6 +1,7 @@
-import './scss/styles.scss';
+import './scss/styles.scss'
+import validateUrl from './validateUrl.js'
 
-const app = document.querySelector('#app');
+const app = document.querySelector('#app')
 
 app.innerHTML = `
    <main class="flex-grow-1">
@@ -22,9 +23,11 @@ app.innerHTML = `
                 </div>
               </div>
             </form>
-            <p class="mt-2 mb-0 text-secondary">Пример: https://ru.hexlet.io/lessons.rss</p>
+            <p class="mt-2 mb-0 text-secondary">Пример: https://lorem-rss.hexlet.app/feed</p>
             <p class="feedback m-0 position-absolute small text-danger"></p>
           </div>
         </div>
       </section>
-`;
+`
+
+validateUrl()
