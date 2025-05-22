@@ -2,9 +2,21 @@ export default {
   translation: {
     form: {
       errors: {
-        UrlInvalid: 'Ссылка должна быть валидным URL',
-        RssExists: 'RSS уже существует',
+        noError: '',
+        urlInvalid: 'Ссылка должна быть валидным URL',
+        rssExists: 'RSS уже существует',
       },
     },
+    loadingProcess: {
+      errors: {
+        noError: '',
+        rssInvalid: 'Ресурс не содержит валидный RSS',
+        networkError: 'Ошибка сети',
+      },
+      success: 'RSS успешно загружен',
+    },
+    feeds: 'Фиды',
+    posts: 'Посты',
+    button: 'Просмотр',
   },
 }
