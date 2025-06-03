@@ -31,7 +31,7 @@ const watchState = (state) => {
       }
     }
 
-    if (pathRoot === 'loadingProcess') {
+    if (pathRoot === 'loadingProcess' || pathRoot === 'posts') {
       if (state.loadingProcess.state === 'failed') {
         feedback.textContent = i18n.t(`loadingProcess.errors.${state.loadingProcess.error}`)
         feedback.classList.add('text-danger')
