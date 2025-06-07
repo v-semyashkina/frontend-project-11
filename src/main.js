@@ -1,9 +1,26 @@
-import './scss/styles.scss'
-import validateUrl from './validateUrl.js'
+import './scss/styles.scss';
+import validateUrl from './validateUrl.js';
 
-const app = document.querySelector('#app')
+const app = document.querySelector('#app');
 
 app.innerHTML = `
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-break"></div>
+        <div class="modal-footer">
+          <a class="btn btn-primary full-article" href="" role="button" target="_blank" rel="noopener noreferrer">
+            Читать полностью
+          </a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
    <main class="flex-grow-1">
       <section class="container-fluid bg-dark p-5">
         <div class="row">
@@ -36,6 +53,6 @@ app.innerHTML = `
         </div>
       </div>
     </section>
-`
+`;
 
-validateUrl()
+validateUrl();
