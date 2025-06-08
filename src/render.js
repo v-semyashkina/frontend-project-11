@@ -29,7 +29,8 @@ const renderFeeds = (feeds, feedsHeader) => {
   feedsContainer.append(list)
 }
 
-const renderPosts = (posts, seenPosts, postsHeader, buttonText, updateModal, addPostToSeen) => {
+const renderPosts = (state, postsHeader, buttonText, updateModal, addPostToSeen) => {
+  const { posts, seenPosts } = state
   const postContainer = document.querySelector('.posts')
   postContainer.textContent = ''
   const card = document.createElement('div')
@@ -71,7 +72,8 @@ const renderPosts = (posts, seenPosts, postsHeader, buttonText, updateModal, add
     button.dataset.bsTarget = '#modal'
     button.textContent = buttonText
     button.addEventListener('click', () => {
-      updateModal(post), addPostToSeen(post.id)
+      updateModal(post)
+      addPostToSeen(post.id)
     })
     listItem.append(button)
     list.append(listItem)

@@ -48,14 +48,7 @@ const watchState = (state, i18n, updateModal, addPostToSeen) => {
     }
 
     if (mainPath === 'posts' || mainPath === 'seenPosts') {
-      renderPosts(
-        state.posts,
-        state.seenPosts,
-        i18n.t('posts'),
-        i18n.t('button'),
-        updateModal,
-        addPostToSeen,
-      )
+      renderPosts(state, i18n.t('posts'), i18n.t('button'), updateModal, addPostToSeen)
     }
 
     if (mainPath === 'modal') {
