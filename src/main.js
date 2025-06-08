@@ -1,7 +1,7 @@
-import './scss/styles.scss';
-import validateUrl from './validateUrl.js';
+import './scss/styles.scss'
+import init from '../index.js'
 
-const app = document.querySelector('#app');
+const app = document.querySelector('#app')
 
 app.innerHTML = `
   <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true" role="dialog">
@@ -53,6 +53,6 @@ app.innerHTML = `
         </div>
       </div>
     </section>
-`;
+`
 
-validateUrl();
+init()

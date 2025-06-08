@@ -1,44 +1,49 @@
-import axios from 'axios';
-import parse from './parse.js';
-import { uniqueId } from 'lodash';
+import axios from 'axios'
+import parse from './parse.js'
+import { uniqueId } from 'lodash'
 
-const proxyUrl = 'https://allorigins.hexlet.app/get?disableCache=true&url=';
-
-export default (state) => {
-  const { feeds, posts } = state;
+export default (state, proxyUrl) => {
+  const { feeds, posts } = state
   return Promise.all(
-    feeds.map((feed) => {
+    (feeds || []).map((feed) => {
       const oldPostsGuids = posts
-        .filter((post) => post.feedId === feed.id)
-        .map((post) => post.postGuid);
+        .filter(post => post.feedId === feed.id)
+        .map(post => post.postGuid)
       return axios
         .get(proxyUrl + feed.feedLink)
         .then((response) => {
-          const data = response.data.contents;
-          const parsedData = parse(data);
-          const posts = Array.from(parsedData.getElementsByTagName('item'));
+          const data = response.data.contents
+          const parsedData = parse(data)
+          const posts = Array.from(parsedData.getElementsByTagName('item'))
           const newPosts = posts.filter((post) => {
-            const postGuid = post.getElementsByTagName('guid')[0].textContent;
-            return !oldPostsGuids.includes(postGuid);
-          });
+            const postGuid = post.getElementsByTagName('guid')[0].textContent
+            return !oldPostsGuids.includes(postGuid)
+          })
           if (newPosts.length > 0) {
             return newPosts.map((post) => {
-              const postGuid = post.getElementsByTagName('guid')[0].textContent;
-              const postTitle = post.getElementsByTagName('title')[0].textContent;
-              const postLink = post.getElementsByTagName('link')[0].textContent;
-              const postId = uniqueId();
-              return { id: postId, feedId: feed.id, postTitle, postLink, postGuid };
-            });
+              const postGuid = post.getElementsByTagName('guid')[0].textContent
+              const postTitle = post.getElementsByTagName('title')[0].textContent
+              const postDescription = post.getElementsByTagName('description')[0].textContent
+              const postLink = post.getElementsByTagName('link')[0].textContent
+              const postId = uniqueId()
+              return {
+                id: postId,
+                feedId: feed.id,
+                postTitle,
+                postDescription,
+                postLink,
+                postGuid,
+              }
+            })
           }
-          return [];
+          return []
         })
         .catch((e) => {
-          console.log(e);
-          return [];
-        });
-      // .then((results) => {
-      //   return results.flat();
-      // });
+          console.log(e)
+          return []
+        })
     }),
-  );
-};
+  ).then((results) => {
+    return results.flat()
+  })
+}
