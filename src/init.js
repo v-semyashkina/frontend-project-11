@@ -38,7 +38,7 @@ export default () => {
         seenPosts: new Set([]),
       }
 
-      const proxyUrl = 'https://allorigins.hexlet.app/get?disableCache=true&url='
+      const getLink = link => `https://allorigins.hexlet.app/get?disableCache=true&url=${link}`
 
       const schema = object().shape({
         newUrl: string('urlInvalid')
@@ -65,7 +65,8 @@ export default () => {
           })
           .then(() => {
             state.loadingProcess = { ...state.loadingProcess, state: 'loading' }
-            return axios.get(proxyUrl + newUrl)
+            const proxyLink = getLink(newUrl)
+            return axios.get(proxyLink)
           })
           .then((response) => {
             const responseStatus = response.data.status.http_code
@@ -152,7 +153,7 @@ export default () => {
       const state = watchState(initialState, i18n, updateModal, addPostToSeen)
 
       const update = () => {
-        return refresh(state, proxyUrl)
+        return refresh(state, getLink)
           .then((newPosts) => {
             if (newPosts.length > 0) {
               state.posts = [...newPosts, ...state.posts]

@@ -2,15 +2,16 @@ import axios from 'axios'
 import parse from './parse.js'
 import { uniqueId } from 'lodash'
 
-export default (state, proxyUrl) => {
+export default (state, getLink) => {
   const { feeds, posts } = state
   return Promise.all(
     (feeds || []).map((feed) => {
+      const proxyLink = getLink(feed.feedLink)
       const oldPostsGuids = posts
         .filter(post => post.feedId === feed.id)
         .map(post => post.postGuid)
       return axios
-        .get(proxyUrl + feed.feedLink)
+        .get(proxyLink)
         .then((response) => {
           const data = response.data.contents
           const parsedData = parse(data)
