@@ -45,6 +45,7 @@ const renderPosts = (state, postsHeader, buttonText, updateModal, addPostToSeen)
   cardBody.append(header);
   card.append(cardBody);
   posts.forEach((post) => {
+    console.log(post);
     const listItem = document.createElement('li');
     listItem.classList.add(
       'list-group-item',
@@ -71,8 +72,8 @@ const renderPosts = (state, postsHeader, buttonText, updateModal, addPostToSeen)
     button.dataset.bsToggle = 'modal';
     button.dataset.bsTarget = '#modal';
     button.textContent = buttonText;
-    console.log('ниже el');
     button.addEventListener('click', () => {
+      console.log('clicked');
       updateModal(post);
       addPostToSeen(post.id);
     });
