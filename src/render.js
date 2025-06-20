@@ -60,7 +60,7 @@ const renderPosts = (state, postsHeader, buttonText, updateModal, addPostToSeen)
       ? link.classList.add('fw-normal', 'link-secondary')
       : link.classList.add('fw-bold');
     link.href = post.postLink;
-    link.textContent = post.postLink;
+    link.textContent = post.postTitle;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.dataset.id = post.id;
@@ -73,7 +73,6 @@ const renderPosts = (state, postsHeader, buttonText, updateModal, addPostToSeen)
     button.dataset.bsTarget = '#modal';
     button.textContent = buttonText;
     button.addEventListener('click', () => {
-      console.log('clicked');
       updateModal(post);
       addPostToSeen(post.id);
     });
