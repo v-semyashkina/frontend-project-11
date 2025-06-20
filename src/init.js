@@ -135,6 +135,7 @@ export default () => {
       });
 
       const updateModal = (post) => {
+        console.log('modal updated');
         state.modal = {
           ...state.modal,
           title: post.postTitle,
