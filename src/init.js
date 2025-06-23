@@ -113,14 +113,6 @@ export default () => {
               }
             }
           })
-          .then(() => {
-            const feeds = state.feeds.map((feed) => {
-              const id = feed.id
-              const link = feed.feedLink
-              return { id, link }
-            })
-            refresh(feeds)
-          })
           .catch((e) => {
             if (e.name === 'AxiosError') {
               state.loadingProcess = {
